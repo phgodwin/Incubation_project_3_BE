@@ -14,6 +14,7 @@ import com.LBG.legacy.repo.CartRepo;
 public class CartService {
 
 	private CartRepo repo;
+//	private double totalPrice;
 
 	public CartService(CartRepo repo) {
 		super();
@@ -78,18 +79,13 @@ public class CartService {
 
 		return !this.repo.existsById(id);
 	}
-//	
+
 //	public void totalPrice() {
-//		double sum = 0;
-//		for (Item item : items) {
-//			sum = sum + item.calcTotal();
+//		totalPrice = 0;
+//		for (int i = 0; i < item.length(); i++) {
+//			totalPrice + list[i];
 //		}
 //
 //	}
-	
 
 }
-
-
-
-

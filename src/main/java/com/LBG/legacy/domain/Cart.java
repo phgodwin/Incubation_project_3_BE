@@ -17,18 +17,18 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String customer;
-	private double totalPrice;
+//	private double totalPrice;
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cart")
 	private List<Item> item;
 
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+//	public double getTotalPrice() {
+//		return totalPrice;
+//	}
+//
+//	public void setTotalPrice(double totalPrice) {
+//		this.totalPrice = totalPrice;
+//	}
 
 	public Cart() {
 		super();
