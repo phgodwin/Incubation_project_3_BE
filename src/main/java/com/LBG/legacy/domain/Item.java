@@ -22,6 +22,10 @@ public class Item {
 	@ManyToOne
 	private Cart cart;
 
+	public double calcTotal() {
+		return price;
+	}
+
 //	public Item(Integer id, String name, double price, Integer quantity) {
 //		super();
 //		this.id = id;

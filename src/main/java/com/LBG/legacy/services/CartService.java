@@ -78,9 +78,18 @@ public class CartService {
 
 		return !this.repo.existsById(id);
 	}
+//	
+//	public void totalPrice() {
+//		double sum = 0;
+//		for (Item item : items) {
+//			sum = sum + item.calcTotal();
+//		}
+//
+//	}
 	
 
-	
-	}
+}
+
+
 
 
