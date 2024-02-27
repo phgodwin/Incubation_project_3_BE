@@ -16,7 +16,7 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String shopper;
+	private String customer;
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cart")
@@ -34,12 +34,12 @@ public class Cart {
 		this.id = id;
 	}
 
-	public String getShopper() {
-		return shopper;
+	public String getCustomer() {
+		return customer;
 	}
 
-	public void setShopper(String shopper) {
-		this.shopper = shopper;
+	public void setCustomer(String customer) {
+		this.customer = customer;
 	}
 
 	public List<Item> getItem() {
@@ -52,7 +52,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [shopper=" + shopper + "]";
+		return "Cart [customer=" + customer + "]";
 	}
 
 }

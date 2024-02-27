@@ -2,7 +2,7 @@ DROP TABLE `item`;
 DROP TABLE `cart`; 
 CREATE TABLE `cart`(
 	`id` INT PRIMARY KEY AUTO_INCREMENT, 
-	`shopper` VARCHAR 
+	`customer` VARCHAR 
 
 );
 

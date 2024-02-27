@@ -52,8 +52,8 @@ public class CartService {
 
 		Cart existing = found.get();
 
-		if (newCart.getShopper() != null) {
-			existing.setShopper(newCart.getShopper());
+		if (newCart.getCustomer() != null) {
+			existing.setCustomer(newCart.getCustomer());
 		}
 
 //		if (newCart.getId() != null) {
