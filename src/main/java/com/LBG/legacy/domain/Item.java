@@ -22,17 +22,16 @@ public class Item {
 	@ManyToOne
 	private Cart cart;
 
-	public Item(Integer id, String name, double price, Integer quantity) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.quantity = quantity;
-	}
+//	public Item(Integer id, String name, double price, Integer quantity) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//		this.price = price;
+//		this.quantity = quantity;
+//	}
 
 	public Item() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {
@@ -65,6 +64,14 @@ public class Item {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	@Override

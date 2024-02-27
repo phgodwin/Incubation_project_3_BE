@@ -17,14 +17,13 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String shopper;
+
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cart")
 	private List<Item> item;
 
-
 	public Cart() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {
@@ -35,16 +34,16 @@ public class Cart {
 		this.id = id;
 	}
 
-	public List<Item> getItem() {
-		return item;
-	}
-
 	public String getShopper() {
 		return shopper;
 	}
 
 	public void setShopper(String shopper) {
 		this.shopper = shopper;
+	}
+
+	public List<Item> getItem() {
+		return item;
 	}
 
 	public void setItem(List<Item> item) {
@@ -55,7 +54,5 @@ public class Cart {
 	public String toString() {
 		return "Cart [shopper=" + shopper + "]";
 	}
-
-
 
 }

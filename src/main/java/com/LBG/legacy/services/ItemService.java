@@ -61,6 +61,11 @@ public class ItemService {
 
 		if (newItem.getQuantity() != null) {
 			existing.setQuantity(newItem.getQuantity());
+
+		}
+
+		if (newItem.getCart() != null) {
+			existing.setCart(newItem.getCart());
 		}
 
 		Item updated = this.repo.save(existing);

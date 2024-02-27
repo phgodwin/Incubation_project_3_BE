@@ -23,7 +23,7 @@ public class CartService {
 	public ResponseEntity<Cart> createCart(Cart newCart) {
 		Cart created = this.repo.save(newCart);
 		return new ResponseEntity<Cart>(created, HttpStatus.CREATED);
-	
+
 	}
 
 	public List<Cart> getCarts() {
@@ -52,23 +52,27 @@ public class CartService {
 
 		Cart existing = found.get();
 
-		if (newCart.getId() != null) {
-			existing.setId(newCart.getId());
+		if (newCart.getShopper() != null) {
+			existing.setShopper(newCart.getShopper());
 		}
 
-//		if (newItem.getPrice() != null) {
-//			existing.setPrice(newItem.getPrice());
+//		if (newCart.getId() != null) {
+//			existing.setId(newCart.getId());
 //		}
-
-		if (newCart.getItem() != null) {
-			existing.setItem(newCart.getItem());
-		}
+//
+////		if (newItem.getPrice() != null) {
+////			existing.setPrice(newItem.getPrice());
+////		}
+//
+//		if (newCart.getItem() != null) {
+//			existing.setItem(newCart.getItem());
+//		}
 
 		Cart updated = this.repo.save(existing);
 
 		return ResponseEntity.ok(updated);
 	}
-	
+
 	public boolean remove(int id) {
 		this.repo.deleteById(id);
 
