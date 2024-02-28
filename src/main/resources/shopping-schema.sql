@@ -3,7 +3,7 @@ DROP TABLE `cart`;
 CREATE TABLE `cart`(
 	`id` INT PRIMARY KEY AUTO_INCREMENT, 
 	`customer` VARCHAR 
-
+	
 );
 
 CREATE TABLE `item` (
