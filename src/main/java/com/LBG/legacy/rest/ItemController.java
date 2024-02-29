@@ -3,6 +3,7 @@ package com.LBG.legacy.rest;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LBG.legacy.domain.Item;
 import com.LBG.legacy.services.ItemService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/item")
 public class ItemController {
