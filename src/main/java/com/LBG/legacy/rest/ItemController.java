@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.LBG.legacy.domain.Item;
 import com.LBG.legacy.services.ItemService;
 
-@CrossOrigin("*")
+
 @RestController
+@CrossOrigin
 @RequestMapping("/item")
 public class ItemController {
 

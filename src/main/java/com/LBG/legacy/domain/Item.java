@@ -16,7 +16,7 @@ public class Item {
 
 	private Integer id;
 	private String name;
-	private double price;
+	private Double price;
 	private Integer quantity;
 	@JsonBackReference
 	@ManyToOne
@@ -52,11 +52,11 @@ public class Item {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

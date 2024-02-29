@@ -57,14 +57,20 @@ public class ItemService {
 			existing.setName(newItem.getName());
 		}
 
-//		if (newItem.getPrice() != null) {
-//			existing.setPrice(newItem.getPrice());
-//		}
+		if (newItem.getPrice() != null && existing.getPrice() != null) {
+			double epsilon = 0.0001;
+			if (Math.abs(existing.getPrice().doubleValue() - newItem.getPrice().doubleValue()) > epsilon) {
+				existing.setPrice(newItem.getPrice());
+			}
+		}
 
-		if (newItem.getQuantity() != null) {
+
+		if (newItem.getQuantity() != null && newItem.getQuantity() != 0) {
+
 			existing.setQuantity(newItem.getQuantity());
 
 		}
+
 
 		if (newItem.getCart() != null) {
 			existing.setCart(newItem.getCart());
