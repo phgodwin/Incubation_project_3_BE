@@ -87,4 +87,9 @@ public class ItemService {
 		return !this.repo.existsById(id);
 	}
 
+	public boolean removeAll() {
+		this.repo.deleteAll();
+		return this.repo.count() == 0;
+	}
+
 }
