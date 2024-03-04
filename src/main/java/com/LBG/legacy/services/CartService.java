@@ -87,4 +87,8 @@ public class CartService {
 //		return cart.calcTotal();
 //	}
 
+	public boolean removeAll() {
+		this.repo.deleteAll();
+		return this.repo.count() == 0;
+	}
 }
