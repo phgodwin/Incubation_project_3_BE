@@ -22,19 +22,11 @@ public class Item {
 	@ManyToOne
 	private Cart cart;
 
-//	public Item(Integer id, String name, double price, Integer quantity) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.price = price;
-//		this.quantity = quantity;
-//	}
+
 
 	public Item() {
 		super();
 	}
-
-//	public List<Item> item;
 
 	public Integer getId() {
 		return id;

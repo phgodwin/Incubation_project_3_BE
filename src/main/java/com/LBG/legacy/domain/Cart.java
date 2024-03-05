@@ -17,7 +17,6 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String customer;
-//	private double calcTotal;
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cart")
 	private List<Item> item;
@@ -26,25 +25,6 @@ public class Cart {
 		super();
 	}
 
-//	public double getCalcTotal() {
-//		return calcTotal;
-//	}
-//
-//	public void setCalcTotal(double calcTotal) {
-//		this.calcTotal = calcTotal;
-//	}
-
-//	public Cart(List<Item> item) {
-//		this.item = item;
-//	}
-//
-//	public double calcTotal() {
-//		double total = 0.0;
-//		for (Item i : item) {
-//			total += i.getPrice();
-//		}
-//		return total;
-//	}
 
 	public Integer getId() {
 		return id;
@@ -70,9 +50,5 @@ public class Cart {
 		this.item = item;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Cart [customer=" + customer + "]";
-//	}
 
 }

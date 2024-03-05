@@ -56,21 +56,7 @@ public class CartService {
 			existing.setCustomer(newCart.getCustomer());
 		}
 
-//		if (newCart.getId() != null) {
-//			existing.setId(newCart.getId());
-//		}
-//
-////		if (newItem.getPrice() != null) {
-////			existing.setPrice(newItem.getPrice());
-////		}
-//
-//		if (newCart.getItem() != null) {
-//			existing.setItem(newCart.getItem());
-//		}
 
-//		if (newCart.getCalcTotal() != null) {
-//			exisiting.setCalcTotal(newCart.getCalcTotal());
-//		}
 
 		Cart updated = this.repo.save(existing);
 
@@ -82,10 +68,6 @@ public class CartService {
 
 		return !this.repo.existsById(id);
 	}
-
-//	public double calcTotal(Cart cart) {
-//		return cart.calcTotal();
-//	}
 
 	public boolean removeAll() {
 		this.repo.deleteAll();
