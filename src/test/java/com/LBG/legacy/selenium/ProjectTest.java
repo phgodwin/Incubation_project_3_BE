@@ -135,4 +135,5 @@ public class ProjectTest {
 		totalButton.click();
 
 	}
+	// tests 4 + 5 dont work yet obvi
 }
