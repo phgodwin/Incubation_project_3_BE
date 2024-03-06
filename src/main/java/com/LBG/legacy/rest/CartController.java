@@ -29,11 +29,6 @@ public class CartController {
 		this.service = service;
 	}
 
-//	@PostMapping("/total")
-//	public double calcTotal(@RequestBody List<Item> items) {
-//		Cart cart = new Cart(items);
-//		return service.calcTotal(cart);
-//	}
 
 	@PostMapping("/create")
 	public ResponseEntity<Cart> create(@RequestBody Cart newCart) {
