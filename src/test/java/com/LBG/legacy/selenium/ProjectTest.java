@@ -49,6 +49,7 @@ public class ProjectTest {
 		WebElement clickLogin = this.driver
 				.findElement(By.cssSelector("#root > div > div > div > div > div:nth-child(4) > button"));
 		clickLogin.click();
+		// this one works but need to reduce screen res
 	}
 
 	@Test
@@ -71,13 +72,67 @@ public class ProjectTest {
 		WebElement createItemButton = this.driver
 				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form > button"));
 		createItemButton.click();
-		driver.navigate().refresh();
+		// driver.navigate().refresh();
+		// new item is being created just need to then delete it
+		// test deleting an item
 	}
 
 	@Test
 	@Order(3)
 
 	void testCart() {
+		this.driver.get("http://localhost:" + this.port);
+		WebElement clickOrders = this.driver.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(3) > a > b"));
+		clickOrders.click();
+
+		WebElement enterCustomer = this.driver.findElement(
+				By.cssSelector("#root > div > div > div:nth-child(1) > form:nth-child(1) > label > input[type=text]"));
+		enterCustomer.sendKeys("Mr Squiggles");
+
+		WebElement createCartButton = this.driver
+				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form:nth-child(1) > button"));
+		createCartButton.click();
+		// cart is being created
+
+		WebElement editCustomer = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div.container.mt-4 > div > div:nth-child(7) > div > div > ul > li:nth-child(2) > button"));
+		editCustomer.click();
+
+		// we are going to struggle here because its a pop up
+	}
+
+	@Test
+	@Order(4)
+
+	void testAddToCart() {
+
+		WebElement clickOrdersAgain = this.driver
+				.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(3) > a > b"));
+		clickOrdersAgain.click();
+
+		this.driver.get("http://localhost:" + this.port);
+		WebElement clickSelectItem = this.driver.findElement(By.cssSelector("need to pick specific item"));
+		clickSelectItem.click();
+
+		WebElement clickSelectCustomer = this.driver.findElement(By.cssSelector("need to pick specific item"));
+		clickSelectCustomer.click();
+
+		WebElement addToCartButton = this.driver
+				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form:nth-child(2) > button"));
+		addToCartButton.click();
+	}
+
+	@Test
+	@Order(5)
+
+	void testTotalPrice() {
+		WebElement clickOrdersAswell = this.driver
+				.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(3) > a > b"));
+		clickOrdersAswell.click();
+
+		WebElement totalButton = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div > ul > li:nth-child(6) > button"));
+		totalButton.click();
 
 	}
 }
