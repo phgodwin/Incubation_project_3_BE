@@ -49,6 +49,7 @@ public class ProjectTest {
 		WebElement clickLogin = this.driver
 				.findElement(By.cssSelector("#root > div > div > div > div > div:nth-child(4) > button"));
 		clickLogin.click();
+		// add assumption here
 		// this one works but need to reduce screen res
 	}
 
@@ -72,9 +73,11 @@ public class ProjectTest {
 		WebElement createItemButton = this.driver
 				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form > button"));
 		createItemButton.click();
+		// add assumption before deleting
 		// driver.navigate().refresh();
 		// new item is being created just need to then delete it
 		// test deleting an item
+		// add assumption after deleting
 	}
 
 	@Test
@@ -93,12 +96,13 @@ public class ProjectTest {
 				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form:nth-child(1) > button"));
 		createCartButton.click();
 		// cart is being created
-
+		// add assumption here
 		WebElement editCustomer = this.driver.findElement(By.cssSelector(
 				"#root > div > div > div.container.mt-4 > div > div:nth-child(7) > div > div > ul > li:nth-child(2) > button"));
 		editCustomer.click();
 
 		// we are going to struggle here because its a pop up
+		// add assumption here
 	}
 
 	@Test
@@ -120,6 +124,8 @@ public class ProjectTest {
 		WebElement addToCartButton = this.driver
 				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form:nth-child(2) > button"));
 		addToCartButton.click();
+
+		// add assumption here
 	}
 
 	@Test
@@ -133,6 +139,8 @@ public class ProjectTest {
 		WebElement totalButton = this.driver.findElement(By.cssSelector(
 				"#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div > ul > li:nth-child(6) > button"));
 		totalButton.click();
+
+		// work out pop up assumption
 
 	}
 	// tests 4 + 5 dont work yet obvi
