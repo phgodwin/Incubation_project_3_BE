@@ -1,6 +1,7 @@
 package com.LBG.legacy.selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 
@@ -29,7 +30,6 @@ import com.LBG.legacy.SpringLegacyApplication;
 public class ProjectTest {
 
 	private RemoteWebDriver driver;
-//	private WebDriverWait wait;
 
 	@LocalServerPort
 	private int port;
@@ -60,27 +60,10 @@ public class ProjectTest {
 				"#root > div > div > div > div.carousel.slide > a.carousel-control-next > span.carousel-control-next-icon"));
 		clickNextQuote.click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.alertIsPresent()).dismiss();
+		WebElement someElementAfterLogin = this.driver
+				.findElement(By.cssSelector("#root > div > div > div > div.card.border-danger > div"));
+		assertTrue(someElementAfterLogin.isDisplayed(), "the element is not displayed after login");
 
-//		try {
-//			Alert alert = driver.switchTo().alert();
-//			assertEquals("Expected alert not present", alert.getText());
-//			alert.accept();
-//			fail("Expected alert not present");
-//		} catch (NoAlertPresentException e) {
-//			// No alert is expected, so this is fine
-//		}
-
-//		try {
-//			Alert alert = driver.switchTo().alert();
-//			fail("Unexpected alert present with message: " + alert.getText());
-//		} catch (NoAlertPresentException e) {
-//			// No alert, continue with the test
-//		}
-
-		// add assumption here
-		// this one works but need to reduce screen res
 	}
 
 	@Test
@@ -105,7 +88,9 @@ public class ProjectTest {
 		createItemButton.click();
 		Thread.sleep(500);
 
-		Alert alert = driver.switchTo().alert();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Alert alert = wait.withTimeout(Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
+
 		String alertMessage = alert.getText();
 		assertEquals("Item created successfully", alertMessage);
 		alert.accept();
@@ -123,12 +108,10 @@ public class ProjectTest {
 				By.cssSelector("#root > div > div > div.container.mt-4 > div > div:nth-child(2) > div > div > button"));
 		deleteItemButton.click();
 
-//		try {
-//			Alert alert = driver.switchTo().alert();
-//			fail("Unexpected alert present with message: " + alert.getText());
-//		} catch (NoAlertPresentException e) {
-//			// No alert, continue with the test
-//		}
+		WebElement someElementAfterDelete = this.driver
+				.findElement(By.cssSelector("#root > div > div > div.container.mt-4 > div > div > div > div"));
+		assertTrue(someElementAfterDelete.isDisplayed(), "the element is not displayed after delete");
+
 	}
 
 	@Test
@@ -148,24 +131,11 @@ public class ProjectTest {
 		createCartButton.click();
 		Thread.sleep(500);
 
-//		Alert alert = driver.switchTo().alert(); // switch to alert
-//
-//		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
-//
-//		System.out.println(alertMessage); // Print Alert Message
-//		Thread.sleep(500);
-//		alert.accept();
-
 		Alert cartAlert = driver.switchTo().alert();
 		String cartAlertMessage = cartAlert.getText();
 		assertEquals("Cart created successfully", cartAlertMessage);
 		cartAlert.accept();
 
-//		Alert successAlert = driver.switchTo().alert();
-//		String cartAlertMessage = successAlert.getText();
-//		Assertions.assertTrue(cartAlertMessage.contains("Cart created successfully"),
-//				"Cart creation success message not found");
-//		successAlert.accept();
 	}
 
 	@Test
@@ -179,11 +149,11 @@ public class ProjectTest {
 		editCustomer.click();
 		Thread.sleep(500);
 
-		Alert alert = driver.switchTo().alert(); // switch to alert
+		Alert alert = driver.switchTo().alert();
 
-		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+		String alertMessage = driver.switchTo().alert().getText();
 
-		System.out.println(alertMessage); // Print Alert Message
+		System.out.println(alertMessage);
 		Thread.sleep(500);
 		alert.sendKeys("Maxie");
 		Thread.sleep(500);
@@ -221,24 +191,11 @@ public class ProjectTest {
 
 		Thread.sleep(500);
 
-//		Alert alert = driver.switchTo().alert(); // switch to alert
-//
-//		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
-//
-//		System.out.println(alertMessage); // Print Alert Message
-//		Thread.sleep(500);
-//		alert.accept();
-
 		Alert addAlert = driver.switchTo().alert();
 		String addAlertMessage = addAlert.getText();
 		assertEquals("Item added to cart successfully", addAlertMessage);
 		addAlert.accept();
 
-//		Alert successAlert = driver.switchTo().alert();
-//		String addingAlertMessage = successAlert.getText();
-//		Assertions.assertTrue(addingAlertMessage.contains("Item added to cart successfully"),
-//				"Item addition to cart success message not found");
-//		successAlert.accept();
 	}
 
 	@Test
@@ -256,24 +213,10 @@ public class ProjectTest {
 
 		Thread.sleep(500);
 
-//		Alert alert = driver.switchTo().alert(); // switch to alert
-//
-//		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
-//
-//		System.out.println(alertMessage); // Print Alert Message
-//		Thread.sleep(500);
-//		alert.accept();
-
 		Alert totalAlert = driver.switchTo().alert();
 		String totalAlertMessage = totalAlert.getText();
 		assertEquals("Total for Maxie's cart: £26.80", totalAlertMessage);
 		totalAlert.accept();
-
-//		Alert successAlert = driver.switchTo().alert();
-//		String priceAlertMessage = successAlert.getText();
-//		Assertions.assertTrue(priceAlertMessage.contains("Total for Maxie's cart: £26.80"),
-//				"Total price calculation success message not found");
-//		successAlert.accept();
 
 	}
 
