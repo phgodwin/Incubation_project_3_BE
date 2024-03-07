@@ -7,6 +7,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,7 +39,7 @@ public class ProjectTest {
 	@Test
 	@Order(1)
 
-	void testLogin() {
+	void testLogin() throws InterruptedException {
 		this.driver.get("http://localhost:" + this.port);
 		WebElement clickUserName = this.driver.findElement(By.cssSelector(
 				"#root > div > div > div > div > div:nth-child(4) > label:nth-child(2) > input[type=text]"));
@@ -49,6 +50,10 @@ public class ProjectTest {
 		WebElement clickLogin = this.driver
 				.findElement(By.cssSelector("#root > div > div > div > div > div:nth-child(4) > button"));
 		clickLogin.click();
+		Thread.sleep(500);
+		WebElement clickNextQuote = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div > div.carousel.slide > a.carousel-control-next > span.carousel-control-next-icon"));
+		clickNextQuote.click();
 		// add assumption here
 		// this one works but need to reduce screen res
 	}
@@ -56,7 +61,7 @@ public class ProjectTest {
 	@Test
 	@Order(2)
 
-	void testItem() {
+	void testItem() throws InterruptedException {
 		this.driver.get("http://localhost:" + this.port);
 		WebElement clickInventory = this.driver
 				.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(2) > a > b"));
@@ -73,17 +78,26 @@ public class ProjectTest {
 		WebElement createItemButton = this.driver
 				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form > button"));
 		createItemButton.click();
-		// add assumption before deleting
-		// driver.navigate().refresh();
-		// new item is being created just need to then delete it
-		// test deleting an item
-		// add assumption after deleting
+		Thread.sleep(500);
+
 	}
 
 	@Test
 	@Order(3)
+	void testDeleteItem() throws InterruptedException {
+		this.driver.get("http://localhost:" + this.port);
+		WebElement clickInventory = this.driver
+				.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(2) > a > b"));
+		clickInventory.click();
+		WebElement deleteItemButton = this.driver.findElement(
+				By.cssSelector("#root > div > div > div.container.mt-4 > div > div:nth-child(2) > div > div > button"));
+		deleteItemButton.click();
+	}
 
-	void testCart() {
+	@Test
+	@Order(4)
+
+	void testCart() throws InterruptedException {
 		this.driver.get("http://localhost:" + this.port);
 		WebElement clickOrders = this.driver.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(3) > a > b"));
 		clickOrders.click();
@@ -95,53 +109,95 @@ public class ProjectTest {
 		WebElement createCartButton = this.driver
 				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form:nth-child(1) > button"));
 		createCartButton.click();
-		// cart is being created
-		// add assumption here
-		WebElement editCustomer = this.driver.findElement(By.cssSelector(
-				"#root > div > div > div.container.mt-4 > div > div:nth-child(7) > div > div > ul > li:nth-child(2) > button"));
-		editCustomer.click();
+		Thread.sleep(500);
 
-		// we are going to struggle here because its a pop up
-		// add assumption here
+		Alert alert = driver.switchTo().alert(); // switch to alert
+
+		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+
+		System.out.println(alertMessage); // Print Alert Message
+		Thread.sleep(500);
+		alert.accept();
 	}
 
 	@Test
-	@Order(4)
+	@Order(5)
+	void testEditCustomer() throws InterruptedException {
+		this.driver.get("http://localhost:" + this.port);
+		WebElement clickOrders = this.driver.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(3) > a > b"));
+		clickOrders.click();
+		WebElement editCustomer = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div > ul > li:nth-child(3) > button"));
+		editCustomer.click();
+		Thread.sleep(500);
 
-	void testAddToCart() {
+		Alert alert = driver.switchTo().alert(); // switch to alert
+
+		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+
+		System.out.println(alertMessage); // Print Alert Message
+		Thread.sleep(500);
+		alert.sendKeys("Maxie");
+		Thread.sleep(500);
+		alert.accept();
+	}
+
+	@Test
+	@Order(6)
+
+	void testAddToCart() throws InterruptedException {
+		this.driver.get("http://localhost:" + this.port);
 
 		WebElement clickOrdersAgain = this.driver
 				.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(3) > a > b"));
 		clickOrdersAgain.click();
 
-		this.driver.get("http://localhost:" + this.port);
-		WebElement clickSelectItem = this.driver.findElement(By.cssSelector("need to pick specific item"));
+		WebElement clickSelectItem = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div:nth-child(1) > form:nth-child(2) > label:nth-child(2) > select > option:nth-child(2)"));
 		clickSelectItem.click();
 
-		WebElement clickSelectCustomer = this.driver.findElement(By.cssSelector("need to pick specific item"));
+		WebElement clickSelectCustomer = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div:nth-child(1) > form:nth-child(2) > label:nth-child(3) > select > option:nth-child(2)"));
 		clickSelectCustomer.click();
 
 		WebElement addToCartButton = this.driver
 				.findElement(By.cssSelector("#root > div > div > div:nth-child(1) > form:nth-child(2) > button"));
 		addToCartButton.click();
 
-		// add assumption here
+		Thread.sleep(500);
+
+		Alert alert = driver.switchTo().alert(); // switch to alert
+
+		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+
+		System.out.println(alertMessage); // Print Alert Message
+		Thread.sleep(500);
+		alert.accept();
 	}
 
 	@Test
-	@Order(5)
+	@Order(7)
 
-	void testTotalPrice() {
+	void testTotalPrice() throws InterruptedException {
+		this.driver.get("http://localhost:" + this.port);
 		WebElement clickOrdersAswell = this.driver
 				.findElement(By.cssSelector("#navbarNav > ul > li:nth-child(3) > a > b"));
 		clickOrdersAswell.click();
 
 		WebElement totalButton = this.driver.findElement(By.cssSelector(
-				"#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div > ul > li:nth-child(6) > button"));
+				"#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div > ul > li:nth-child(4) > button"));
 		totalButton.click();
 
-		// work out pop up assumption
+		Thread.sleep(500);
+
+		Alert alert = driver.switchTo().alert(); // switch to alert
+
+		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+
+		System.out.println(alertMessage); // Print Alert Message
+		Thread.sleep(500);
+		alert.accept();
 
 	}
-	// tests 4 + 5 dont work yet obvi
+
 }
