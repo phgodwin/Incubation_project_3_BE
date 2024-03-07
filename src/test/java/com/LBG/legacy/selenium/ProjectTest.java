@@ -1,7 +1,10 @@
 package com.LBG.legacy.selenium;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.Duration;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -12,6 +15,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -54,6 +59,26 @@ public class ProjectTest {
 		WebElement clickNextQuote = this.driver.findElement(By.cssSelector(
 				"#root > div > div > div > div.carousel.slide > a.carousel-control-next > span.carousel-control-next-icon"));
 		clickNextQuote.click();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent()).dismiss();
+
+//		try {
+//			Alert alert = driver.switchTo().alert();
+//			assertEquals("Expected alert not present", alert.getText());
+//			alert.accept();
+//			fail("Expected alert not present");
+//		} catch (NoAlertPresentException e) {
+//			// No alert is expected, so this is fine
+//		}
+
+//		try {
+//			Alert alert = driver.switchTo().alert();
+//			fail("Unexpected alert present with message: " + alert.getText());
+//		} catch (NoAlertPresentException e) {
+//			// No alert, continue with the test
+//		}
+
 		// add assumption here
 		// this one works but need to reduce screen res
 	}
@@ -80,6 +105,11 @@ public class ProjectTest {
 		createItemButton.click();
 		Thread.sleep(500);
 
+		Alert alert = driver.switchTo().alert();
+		String alertMessage = alert.getText();
+		assertEquals("Item created successfully", alertMessage);
+		alert.accept();
+
 	}
 
 	@Test
@@ -92,6 +122,13 @@ public class ProjectTest {
 		WebElement deleteItemButton = this.driver.findElement(
 				By.cssSelector("#root > div > div > div.container.mt-4 > div > div:nth-child(2) > div > div > button"));
 		deleteItemButton.click();
+
+//		try {
+//			Alert alert = driver.switchTo().alert();
+//			fail("Unexpected alert present with message: " + alert.getText());
+//		} catch (NoAlertPresentException e) {
+//			// No alert, continue with the test
+//		}
 	}
 
 	@Test
@@ -111,13 +148,24 @@ public class ProjectTest {
 		createCartButton.click();
 		Thread.sleep(500);
 
-		Alert alert = driver.switchTo().alert(); // switch to alert
+//		Alert alert = driver.switchTo().alert(); // switch to alert
+//
+//		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+//
+//		System.out.println(alertMessage); // Print Alert Message
+//		Thread.sleep(500);
+//		alert.accept();
 
-		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+		Alert cartAlert = driver.switchTo().alert();
+		String cartAlertMessage = cartAlert.getText();
+		assertEquals("Cart created successfully", cartAlertMessage);
+		cartAlert.accept();
 
-		System.out.println(alertMessage); // Print Alert Message
-		Thread.sleep(500);
-		alert.accept();
+//		Alert successAlert = driver.switchTo().alert();
+//		String cartAlertMessage = successAlert.getText();
+//		Assertions.assertTrue(cartAlertMessage.contains("Cart created successfully"),
+//				"Cart creation success message not found");
+//		successAlert.accept();
 	}
 
 	@Test
@@ -140,6 +188,13 @@ public class ProjectTest {
 		alert.sendKeys("Maxie");
 		Thread.sleep(500);
 		alert.accept();
+
+		Thread.sleep(500);
+
+		WebElement editedBuyer = this.driver.findElement(
+				By.cssSelector("#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div > h5"));
+		Assertions.assertEquals("14: Maxie", editedBuyer.getText());
+
 	}
 
 	@Test
@@ -166,13 +221,24 @@ public class ProjectTest {
 
 		Thread.sleep(500);
 
-		Alert alert = driver.switchTo().alert(); // switch to alert
+//		Alert alert = driver.switchTo().alert(); // switch to alert
+//
+//		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+//
+//		System.out.println(alertMessage); // Print Alert Message
+//		Thread.sleep(500);
+//		alert.accept();
 
-		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+		Alert addAlert = driver.switchTo().alert();
+		String addAlertMessage = addAlert.getText();
+		assertEquals("Item added to cart successfully", addAlertMessage);
+		addAlert.accept();
 
-		System.out.println(alertMessage); // Print Alert Message
-		Thread.sleep(500);
-		alert.accept();
+//		Alert successAlert = driver.switchTo().alert();
+//		String addingAlertMessage = successAlert.getText();
+//		Assertions.assertTrue(addingAlertMessage.contains("Item added to cart successfully"),
+//				"Item addition to cart success message not found");
+//		successAlert.accept();
 	}
 
 	@Test
@@ -190,13 +256,24 @@ public class ProjectTest {
 
 		Thread.sleep(500);
 
-		Alert alert = driver.switchTo().alert(); // switch to alert
+//		Alert alert = driver.switchTo().alert(); // switch to alert
+//
+//		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+//
+//		System.out.println(alertMessage); // Print Alert Message
+//		Thread.sleep(500);
+//		alert.accept();
 
-		String alertMessage = driver.switchTo().alert().getText(); // capture alert message
+		Alert totalAlert = driver.switchTo().alert();
+		String totalAlertMessage = totalAlert.getText();
+		assertEquals("Total for Maxie's cart: £26.80", totalAlertMessage);
+		totalAlert.accept();
 
-		System.out.println(alertMessage); // Print Alert Message
-		Thread.sleep(500);
-		alert.accept();
+//		Alert successAlert = driver.switchTo().alert();
+//		String priceAlertMessage = successAlert.getText();
+//		Assertions.assertTrue(priceAlertMessage.contains("Total for Maxie's cart: £26.80"),
+//				"Total price calculation success message not found");
+//		successAlert.accept();
 
 	}
 
