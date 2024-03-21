@@ -1,27 +1,25 @@
 package com.LBG.legacy.domain;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
-public class Cart {
+public class PastOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Integer id;
 	private String customer;
-	@JsonManagedReference(value = "addedToCart")
-	@OneToMany(mappedBy = "cart")
-	private List<Item> item;
+//	@JsonManagedReference(value = "orderMade")
+//	@OneToMany(mappedBy = "pastOrder")
+//	private List<Item> items;
 
-	public Cart() {
+	private String purchased;
+
+	public PastOrder() {
 		super();
 	}
 
@@ -41,12 +39,20 @@ public class Cart {
 		this.customer = customer;
 	}
 
-	public List<Item> getItem() {
-		return item;
+	public String getPurchased() {
+		return purchased;
 	}
 
-	public void setItem(List<Item> item) {
-		this.item = item;
+	public void setPurchased(String purchased) {
+		this.purchased = purchased;
 	}
+
+//	public List<Item> getItems() {
+//		return items;
+//	}
+//
+//	public void setItems(List<Item> items) {
+//		this.items = items;
+//	}
 
 }
