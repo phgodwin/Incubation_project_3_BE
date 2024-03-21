@@ -1,12 +1,15 @@
 package com.LBG.legacy.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Item {
@@ -18,11 +21,10 @@ public class Item {
 	private String name;
 	private Double price;
 	private Integer quantity;
-	@JsonBackReference
-	@ManyToOne
-	private Cart cart;
 
-
+	@ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Cart> carts;
 
 	public Item() {
 		super();
@@ -60,17 +62,12 @@ public class Item {
 		this.quantity = quantity;
 	}
 
-	public Cart getCart() {
-		return cart;
+	public List<Cart> getCarts() {
+		return carts;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [name=" + name + ", price=" + price + ", quantity=" + quantity + "]";
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 
 }

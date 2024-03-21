@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.LBG.legacy.domain.Cart;
 import com.LBG.legacy.domain.Item;
 import com.LBG.legacy.repo.ItemRepo;
 
@@ -64,16 +65,10 @@ public class ItemService {
 			}
 		}
 
-
 		if (newItem.getQuantity() != null && newItem.getQuantity() != 0) {
 
 			existing.setQuantity(newItem.getQuantity());
 
-		}
-
-
-		if (newItem.getCart() != null) {
-			existing.setCart(newItem.getCart());
 		}
 
 		Item updated = this.repo.save(existing);
@@ -90,6 +85,23 @@ public class ItemService {
 	public boolean removeAll() {
 		this.repo.deleteAll();
 		return this.repo.count() == 0;
+	}
+
+	public ResponseEntity<Item> addItemToCart(int id, List<Cart> cart) {
+
+		Optional<Item> found = this.repo.findById(id);
+
+		if (found.isEmpty()) {
+			return new ResponseEntity<Item>(HttpStatus.NOT_FOUND);
+		}
+
+		Item existing = found.get();
+
+		existing.setCarts(cart);
+
+		Item updated = this.repo.save(existing);
+
+		return ResponseEntity.ok(updated);
 	}
 
 }

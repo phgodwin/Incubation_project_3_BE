@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.LBG.legacy.domain.Cart;
 import com.LBG.legacy.domain.Item;
 import com.LBG.legacy.services.ItemService;
-
 
 @RestController
 @CrossOrigin
@@ -48,6 +48,11 @@ public class ItemController {
 	@PatchMapping("/update/{id}")
 	public ResponseEntity<Item> updateItem(@PathVariable int id, @RequestBody Item newItem) {
 		return this.service.updateItem(id, newItem);
+	}
+
+	@PatchMapping("/addItemToCart/{id}")
+	public ResponseEntity<Item> addItemToCart(@PathVariable int id, @RequestBody List<Cart> cart) {
+		return this.service.addItemToCart(id, cart);
 	}
 
 	@DeleteMapping("/remove/{id}")
