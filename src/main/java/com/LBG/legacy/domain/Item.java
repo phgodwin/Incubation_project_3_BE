@@ -21,10 +21,10 @@ public class Item {
 	@JsonBackReference(value = "addedToCart")
 	@ManyToOne
 	private Cart cart;
-	@JsonBackReference(value = "orderMade")
-	@ManyToOne
-//	@JoinColumn(name = "pastOrder_id")
-	private PastOrder pastOrder;
+//	@JsonBackReference(value = "orderMade")
+//	@ManyToOne
+////	@JoinColumn(name = "pastOrder_id")
+//	private PastOrder pastOrder;
 
 	public Item() {
 		super();
@@ -70,13 +70,13 @@ public class Item {
 		this.cart = cart;
 	}
 
-	public PastOrder getPastOrder() {
-		return pastOrder;
-	}
-
-	public void setPastOrder(PastOrder pastOrder) {
-		this.pastOrder = pastOrder;
-	}
+//	public PastOrder getPastOrder() {
+//		return pastOrder;
+//	}
+//
+//	public void setPastOrder(PastOrder pastOrder) {
+//		this.pastOrder = pastOrder;
+//	}
 
 	@Override
 	public String toString() {

@@ -19,6 +19,8 @@ public class PastOrder {
 
 	private String purchased;
 
+//	private List<Object> purchased;
+
 	public PastOrder() {
 		super();
 	}
@@ -47,12 +49,12 @@ public class PastOrder {
 		this.purchased = purchased;
 	}
 
-//	public List<Item> getItems() {
-//		return items;
+//	public List<Object> getPurchased() {
+//		return purchased;
 //	}
 //
-//	public void setItems(List<Item> items) {
-//		this.items = items;
+//	public void setPurchased(List<Object> purchased) {
+//		this.purchased = purchased;
 //	}
 
 }
