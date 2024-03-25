@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS `past_order` CASCADE;
 CREATE TABLE `cart`(
 	`id` INT PRIMARY KEY AUTO_INCREMENT, 
 	`customer` VARCHAR(255) 
-	
 );
 
 CREATE TABLE `item` (
