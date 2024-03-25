@@ -17,14 +17,13 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String customer;
-	@JsonManagedReference
+	@JsonManagedReference(value = "addedToCart")
 	@OneToMany(mappedBy = "cart")
 	private List<Item> item;
 
 	public Cart() {
 		super();
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -49,6 +48,5 @@ public class Cart {
 	public void setItem(List<Item> item) {
 		this.item = item;
 	}
-
 
 }

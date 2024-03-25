@@ -18,11 +18,13 @@ public class Item {
 	private String name;
 	private Double price;
 	private Integer quantity;
-	@JsonBackReference
+	@JsonBackReference(value = "addedToCart")
 	@ManyToOne
 	private Cart cart;
+	@JsonBackReference(value = "orderMade")
+	@ManyToOne
 
-
+	private PastOrder pastOrder;
 
 	public Item() {
 		super();
@@ -66,6 +68,14 @@ public class Item {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+
+	public PastOrder getPastOrder() {
+		return pastOrder;
+	}
+
+	public void setPastOrder(PastOrder pastOrder) {
+		this.pastOrder = pastOrder;
 	}
 
 	@Override
