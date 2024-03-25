@@ -6,9 +6,7 @@ import java.time.Duration;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,7 +19,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
-@TestMethodOrder(OrderAnnotation.class)
 @Sql(scripts = { "classpath:shopping-schema.sql",
 		"classpath:shopping-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
@@ -114,7 +111,7 @@ public class CartTest {
 				.findElement(By.cssSelector("#navbarNav > ul > div > div > a:nth-child(1)"));
 		clickCurrentOrders.click();
 
-//		add items 1 and 2
+//		add item
 
 		WebElement clickSelectItem = this.driver.findElement(By.cssSelector(
 				"#root > div > div > div:nth-child(1) > form:nth-child(2) > label:nth-child(2) > select > option:nth-child(2)"));
