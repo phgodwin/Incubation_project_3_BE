@@ -56,8 +56,6 @@ public class CartService {
 			existing.setCustomer(newCart.getCustomer());
 		}
 
-
-
 		Cart updated = this.repo.save(existing);
 
 		return ResponseEntity.ok(updated);

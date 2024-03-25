@@ -13,13 +13,8 @@ public class PastOrder {
 
 	private Integer id;
 	private String customer;
-//	@JsonManagedReference(value = "orderMade")
-//	@OneToMany(mappedBy = "pastOrder")
-//	private List<Item> items;
-
 	private String purchased;
-
-//	private List<Object> purchased;
+	private Integer total;
 
 	public PastOrder() {
 		super();
@@ -47,6 +42,14 @@ public class PastOrder {
 
 	public void setPurchased(String purchased) {
 		this.purchased = purchased;
+	}
+
+	public Integer getTotal() {
+		return total;
+	}
+
+	public void setTotal(Integer total) {
+		this.total = total;
 	}
 
 //	public List<Object> getPurchased() {

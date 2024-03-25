@@ -21,10 +21,6 @@ public class Item {
 	@JsonBackReference(value = "addedToCart")
 	@ManyToOne
 	private Cart cart;
-//	@JsonBackReference(value = "orderMade")
-//	@ManyToOne
-////	@JoinColumn(name = "pastOrder_id")
-//	private PastOrder pastOrder;
 
 	public Item() {
 		super();
