@@ -23,7 +23,7 @@ public class Item {
 	private Cart cart;
 	@JsonBackReference(value = "orderMade")
 	@ManyToOne
-//	@JoinColumn(name = "pastOrder_id")
+
 	private PastOrder pastOrder;
 
 	public Item() {
