@@ -2,7 +2,6 @@ package com.LBG.legacy.rest;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +28,6 @@ public class CartController {
 		this.service = service;
 	}
 
-
 	@PostMapping("/create")
 	public ResponseEntity<Cart> create(@RequestBody Cart newCart) {
 		return this.service.createCart(newCart);
@@ -40,10 +38,10 @@ public class CartController {
 		return this.service.getCarts();
 	}
 
-	@GetMapping("/get/{id}")
-	public ResponseEntity<Cart> getCart(@PathVariable int id) {
-		return this.service.getCart(id);
-	}
+//	@GetMapping("/get/{id}")
+//	public ResponseEntity<Cart> getCart(@PathVariable int id) {
+//		return this.service.getCart(id);
+//	}
 
 	@PatchMapping("/update/{id}")
 	public ResponseEntity<Cart> updateCart(@PathVariable int id, @RequestBody Cart newCart) {
@@ -55,14 +53,4 @@ public class CartController {
 		return this.service.remove(id);
 	}
 
-	@DeleteMapping("/removeAll")
-	public ResponseEntity<String> removeAllItems() {
-		boolean removedAll = this.service.removeAll();
-
-		if (removedAll) {
-			return new ResponseEntity<>("All carts have been removed.", HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>("Failed to remove all carts.", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
 }

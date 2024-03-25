@@ -1,6 +1,7 @@
 package com.LBG.legacy.selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 
@@ -61,6 +62,26 @@ public class CartTest {
 		String cartAlertMessage = cartAlert.getText();
 		assertEquals("Cart created successfully", cartAlertMessage);
 		cartAlert.accept();
+
+	}
+
+	@Test
+	void testDeleteCart() throws InterruptedException {
+		this.driver.get("http://localhost:" + this.port);
+		WebElement clickOrders = this.driver.findElement(By.cssSelector("#basic-nav-dropdown > span"));
+		clickOrders.click();
+
+		WebElement clickCurrentOrders = this.driver
+				.findElement(By.cssSelector("#navbarNav > ul > div > div > a:nth-child(1)"));
+		clickCurrentOrders.click();
+
+		WebElement deleteCart = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div > ul > li:nth-child(2) > button.btn.btn-danger"));
+		deleteCart.click();
+		Thread.sleep(500);
+		WebElement someElementAfterDelete = this.driver.findElement(
+				By.cssSelector("#root > div > div > div.container.mt-4 > div > div:nth-child(1) > div > div"));
+		assertTrue(someElementAfterDelete.isDisplayed(), "the element is not displayed after delete");
 
 	}
 

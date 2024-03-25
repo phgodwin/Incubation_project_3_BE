@@ -2,7 +2,6 @@ package com.LBG.legacy.rest;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,10 +38,10 @@ public class ItemController {
 		return this.service.getItems();
 	}
 
-	@GetMapping("/get/{id}")
-	public ResponseEntity<Item> getItem(@PathVariable int id) {
-		return this.service.getItem(id);
-	}
+//	@GetMapping("/get/{id}")
+//	public ResponseEntity<Item> getItem(@PathVariable int id) {
+//		return this.service.getItem(id);
+//	}
 
 	@PatchMapping("/update/{id}")
 	public ResponseEntity<Item> updateItem(@PathVariable int id, @RequestBody Item newItem) {
@@ -59,14 +58,4 @@ public class ItemController {
 		return this.service.remove(id);
 	}
 
-	@DeleteMapping("/removeAll")
-	public ResponseEntity<String> removeAllItems() {
-		boolean removedAll = this.service.removeAll();
-
-		if (removedAll) {
-			return new ResponseEntity<>("All items have been removed.", HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>("Failed to remove all items.", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
 }

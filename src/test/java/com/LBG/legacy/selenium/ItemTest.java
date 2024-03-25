@@ -49,7 +49,7 @@ public class ItemTest {
 		clickInventory.click();
 		WebElement enterItemName = this.driver.findElement(
 				By.cssSelector("#root > div > div > div:nth-child(1) > form > label:nth-child(2) > input[type=text]"));
-		enterItemName.sendKeys("Test course 4");
+		enterItemName.sendKeys("Test course 5");
 		WebElement enterItemPrice = this.driver.findElement(
 				By.cssSelector("#root > div > div > div:nth-child(1) > form > label:nth-child(3) > input[type=text]"));
 		enterItemPrice.clear();

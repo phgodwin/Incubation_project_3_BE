@@ -30,18 +30,18 @@ public class CartService {
 		return this.repo.findAll();
 	}
 
-	public ResponseEntity<Cart> getCart(int id) {
-		Optional<Cart> found = this.repo.findById(id);
-
-		if (found.isEmpty()) {
-			return new ResponseEntity<Cart>(HttpStatus.NOT_FOUND);
-		}
-
-		Cart body = found.get();
-
-		return ResponseEntity.ok(body);
-
-	}
+//	public ResponseEntity<Cart> getCart(int id) {
+//		Optional<Cart> found = this.repo.findById(id);
+//
+//		if (found.isEmpty()) {
+//			return new ResponseEntity<Cart>(HttpStatus.NOT_FOUND);
+//		}
+//
+//		Cart body = found.get();
+//
+//		return ResponseEntity.ok(body);
+//
+//	}
 
 	public ResponseEntity<Cart> updateCart(int id, Cart newCart) {
 		Optional<Cart> found = this.repo.findById(id);
@@ -56,8 +56,6 @@ public class CartService {
 			existing.setCustomer(newCart.getCustomer());
 		}
 
-
-
 		Cart updated = this.repo.save(existing);
 
 		return ResponseEntity.ok(updated);
@@ -69,8 +67,4 @@ public class CartService {
 		return !this.repo.existsById(id);
 	}
 
-	public boolean removeAll() {
-		this.repo.deleteAll();
-		return this.repo.count() == 0;
-	}
 }

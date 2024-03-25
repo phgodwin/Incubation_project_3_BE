@@ -31,18 +31,18 @@ public class ItemService {
 		return this.repo.findAll();
 	}
 
-	public ResponseEntity<Item> getItem(int id) {
-		Optional<Item> found = this.repo.findById(id);
-
-		if (found.isEmpty()) {
-			return new ResponseEntity<Item>(HttpStatus.NOT_FOUND);
-		}
-
-		Item body = found.get();
-
-		return ResponseEntity.ok(body);
-
-	}
+//	public ResponseEntity<Item> getItem(int id) {
+//		Optional<Item> found = this.repo.findById(id);
+//
+//		if (found.isEmpty()) {
+//			return new ResponseEntity<Item>(HttpStatus.NOT_FOUND);
+//		}
+//
+//		Item body = found.get();
+//
+//		return ResponseEntity.ok(body);
+//
+//	}
 
 	public ResponseEntity<Item> updateItem(int id, Item newItem) {
 		Optional<Item> found = this.repo.findById(id);
@@ -100,11 +100,6 @@ public class ItemService {
 		this.repo.deleteById(id);
 
 		return !this.repo.existsById(id);
-	}
-
-	public boolean removeAll() {
-		this.repo.deleteAll();
-		return this.repo.count() == 0;
 	}
 
 }

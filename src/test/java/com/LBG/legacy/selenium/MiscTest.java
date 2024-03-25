@@ -101,4 +101,30 @@ public class MiscTest {
 
 	}
 
+	@Test
+
+	void testTotalPrice() throws InterruptedException {
+		this.driver.get("http://localhost:" + this.port);
+
+		this.driver.get("http://localhost:" + this.port);
+		WebElement clickOrders = this.driver.findElement(By.cssSelector("#basic-nav-dropdown > span"));
+		clickOrders.click();
+
+		WebElement clickCurrentOrders = this.driver
+				.findElement(By.cssSelector("#navbarNav > ul > div > div > a:nth-child(1)"));
+		clickCurrentOrders.click();
+
+		WebElement clickCalculateTotal = this.driver.findElement(By.cssSelector(
+				"#root > div > div > div.container.mt-4 > div > div:nth-child(3) > div > div > ul > li:nth-child(4) > button"));
+		clickCalculateTotal.click();
+
+		Thread.sleep(500);
+
+		Alert totalAlert = driver.switchTo().alert();
+		String totalAlertMessage = totalAlert.getText();
+		assertEquals("Total for Test business 3's cart: £11.79", totalAlertMessage);
+		totalAlert.accept();
+
+	}
+
 }
