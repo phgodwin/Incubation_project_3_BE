@@ -1,2 +1,4 @@
-INSERT INTO `cart` VALUES (default, 'Jordan'); 
-INSERT INTO `item` VALUES (default, 'Apple', 2.99, 1); 
+INSERT INTO `cart` VALUES (default, 'Purbrook Park School'); 
+INSERT INTO `item` VALUES (default, 'Introduction into Song Writing', 112.99, 5, 1); 
+INSERT INTO `item` VALUES (default, 'Piano Lessons 101', 82.99, 49, null); 
+
